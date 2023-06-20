@@ -12,7 +12,32 @@
     </style>
 </head>
 <body>
+    <div class="container p-5 mb-5">
+        <div class="row">
+            <div class="col-12">
+                <form>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="checkbox" value="check">
+                        <label class="form-check-label" for="exampleCheck1">Hotel con parcheggio</label>
+                    </div>
+                    <select class="form-select mb-4" aria-label="Default select example">
+                        <option selected>Seleziona hotel per voto</option>
+                        <option name="option" value="1">1</option>
+                        <option name="option" value="2">2</option>
+                        <option name="option" value="3">3</option>
+                        <option name="option" value="4">4</option>
+                        <option name="option" value="5">5</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+</div>
+    <div class="container">
+        <div class="row">
+        
     <?php 
+
     $hotels = [
 
         [
@@ -53,19 +78,8 @@
 
     ];
 
-    echo '<div class="container">
-            <div class="row">
-            <div class="col-12">';
-            
-
-            echo '</div>
-            </div>
-        </div>';
-
-    echo '<div class="container">
-            <div class="row">';
-
-    //card hotel
+    if ($_GET == []){
+            //card hotel
     foreach ($hotels as $value) {
         echo '<div class="col-lg-6">
         <div class="card">
@@ -83,12 +97,32 @@
             </div>
         </div>";
     }
-
-    echo '</div>
-    </div>';
     //Fine card hotel
-    
-   
+    }
+    elseif($_GET["checkbox"] == "check"){
+        foreach ($hotels as $value) {
+            if(!$value["parking"]){
+                echo '<div class="col-lg-6">
+                <div class="card">
+                        <div class="card-body">';
+                
+                        echo '<h5 class="card-title">' . $value["name"] . '</h5>';
+                        echo '<p class="card-text">' . $value["description"] . '</p>';
+        
+                        //testo che appare per il parcheggio
+                        echo '<span>'. $tmp = ($value["parking"]) ? '<i class="bi bi-p-circle"></i>' : '<i class="bi bi-sign-no-parking"></i>' .'</span>';
+                        echo '<span class="ms-4 voto">'. 'voto ' . $value["vote"] .'</span>';
+                        echo '<span class="ms-4">'. 'Distanza dal centro: ' . $value["distance_to_center"] . ' km' . '</span>';
+        
+                    echo "</div>
+                    </div>
+                </div>";
+            }
+        }
+    };
     ?>
+
+        </div>
+    </div>
 </body>
 </html>
