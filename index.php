@@ -54,7 +54,18 @@
     ];
 
     echo '<div class="container">
+            <div class="row">
+            <div class="col-12">';
+            
+
+            echo '</div>
+            </div>
+        </div>';
+
+    echo '<div class="container">
             <div class="row">';
+
+    //card hotel
     foreach ($hotels as $value) {
         echo '<div class="col-lg-6">
         <div class="card">
@@ -64,9 +75,9 @@
                 echo '<p class="card-text">' . $value["description"] . '</p>';
 
                 //testo che appare per il parcheggio
-                echo '<a href="#" class="card-link">'. 'parcheggio: ' . $tmp = ($value["parking"]) ? 'Si' : 'No' .'</a>';
-                echo '<a href="#" class="card-link">'. 'voto: ' . $value["vote"] .'</a>';
-                echo '<a href="#" class="card-link">'. 'Distanza dal centro: ' . $value["distance_to_center"] . ' km' . '</a>';
+                echo '<span>'. $tmp = ($value["parking"]) ? '<i class="bi bi-p-circle"></i>' : '<i class="bi bi-sign-no-parking"></i>' .'</span>';
+                echo '<span class="ms-4 voto">'. 'voto ' . $value["vote"] .'</span>';
+                echo '<span class="ms-4">'. 'Distanza dal centro: ' . $value["distance_to_center"] . ' km' . '</span>';
 
             echo "</div>
             </div>
@@ -75,12 +86,9 @@
 
     echo '</div>
     </div>';
+    //Fine card hotel
     
    
     ?>
-
-<!-- echo "<h1>" . $x . "</h1>"; -->
-
-
 </body>
 </html>
